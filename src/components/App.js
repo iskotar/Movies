@@ -18,9 +18,13 @@ function App () {
     y: '',
     page: ''
   })
-  const [list, setList] = useState([])
-  const [totalResults, setTotalResults] = useState()
-  const [error, setError] = useState('')
+
+  const [state, setState] = useState({
+    list: [],
+    totalResults: null,
+    page: 1,
+    errorMessage: ''
+  })
 
   useEffect(() => {
     query.page && search()
@@ -29,16 +33,26 @@ function App () {
   const search = async () => {
     const res = await searchByQuery(query)
     if (res.Error) {
-      setList([])
-      setTotalResults()
-      return setError(query.title.length ? 'Movie not found' : 'Please, enter the movie title')
+      return setState({
+        ...state,
+        list: [],
+        totalResults: null,
+        errorMessage: query.title.length ? 'Movie not found' : 'Please, enter the movie title'
+      })
     }
-    setList(res.Search)
-    setTotalResults(res.totalResults)
+
+    setState({
+      ...state,
+      list: res.Search,
+      totalResults: res.totalResults,
+    })
   }
 
   const onChangeTitle = (e) => {
-    setError(null)
+    setState({
+      ...state,
+      errorMessage: null
+    })
     setQuery({ ...query, title: e.target.value, page: '' })
   }
 
@@ -51,9 +65,9 @@ function App () {
       <Container>
         <Header/>
         <Row justify={'center'}>
-          <Search search={search} query={onChangeTitle} onChangePage={onChangePage} error={error}/>
-          <List list={list}/>
-          <Pager totalResults={totalResults} onChangePage={onChangePage} current={query.page}/>
+          <Search search={search} query={onChangeTitle} onChangePage={onChangePage} error={state.errorMessage}/>
+          <List list={state.list}/>
+          <Pager totalResults={state.totalResults} onChangePage={onChangePage} current={query.page}/>
         </Row>
       </Container>
     </div>
