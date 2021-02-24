@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { Col, Row } from 'antd'
 import { IconButton, TextField } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
+import { clearErrorDispatcher, searchByQueryDispatcher } from '../redux/actions/actions'
 
-function Search ({ search, query, error }) {
+function Search (props) {
+  const { searchByQuery, Error, clearError } = props
+  const [inputValue, setInputValue] = useState('')
+
+  const onChangeInput = (e) => {
+    clearError()
+    setInputValue(e.target.value.trim())
+  }
 
   const onSubmit = (e) => {
-    search()
-    e.preventDefault();
+    e.preventDefault()
+    searchByQuery({ title: inputValue })
   }
 
   return (
@@ -18,15 +27,15 @@ function Search ({ search, query, error }) {
             id="search-field"
             label="Search"
             placeholder="Enter movie title"
-            onChange={query}
+            onChange={onChangeInput}
             margin="dense"
-            error={!!error}
-            helperText={error}
+            error={!!Error}
+            helperText={Error}
           />
           <IconButton
             color="inherit"
             onClick={onSubmit}
-            style={{ border: '1px solid lightgrey', marginLeft: '10px'}}
+            style={{ border: '1px solid lightgrey', marginLeft: '10px' }}
           >
             <SearchIcon/>
           </IconButton>
@@ -36,4 +45,13 @@ function Search ({ search, query, error }) {
   )
 }
 
-export default Search
+const mapStateToProps = (state) => ({
+  Error: state.searchResult.error
+})
+
+const mapDispatchToProps = dispatch => ({
+  searchByQuery: (payload) => dispatch(searchByQueryDispatcher(payload)),
+  clearError: () => dispatch(clearErrorDispatcher())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

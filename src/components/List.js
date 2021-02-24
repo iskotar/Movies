@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row } from 'antd'
 import ListItem from './ListItem'
+import { connect } from 'react-redux'
 
 function List({list}) {
 
@@ -15,4 +16,8 @@ function List({list}) {
   );
 }
 
-export default List;
+const mapStateToProps = (state) => ({
+  list: state.searchResult.list
+})
+
+export default connect(mapStateToProps)(List);
