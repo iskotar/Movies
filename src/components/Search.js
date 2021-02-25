@@ -4,6 +4,7 @@ import { Col, Row } from 'antd'
 import { IconButton, TextField } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { clearErrorDispatcher, searchByQueryDispatcher } from '../redux/actions/actions'
+import { withRouter } from "react-router";
 
 function Search (props) {
   const { searchByQuery, Error, clearError } = props
@@ -16,11 +17,12 @@ function Search (props) {
 
   const onSubmit = (e) => {
     e.preventDefault()
+    props.history.push('/')
     searchByQuery({ title: inputValue })
   }
 
   return (
-    <Row align='bottom'>
+    <Row align='bottom' style={{marginTop: 50}}>
       <Col>
         <form autoComplete="off" onSubmit={onSubmit}>
           <TextField
@@ -54,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
   clearError: () => dispatch(clearErrorDispatcher())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search))
