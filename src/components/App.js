@@ -8,14 +8,16 @@ import Search from './Search'
 import List from './List'
 import Header from './Header'
 import ItemPage from './ItemPage'
+import { Slider } from './Slider'
 
 function App () {
 
   return (
     <Router>
       <div className="App">
+        <Header/>
+        <Slider/>
         <Container>
-          <Header/>
           <Row justify={'center'}>
             <Search/>
             <Switch>
