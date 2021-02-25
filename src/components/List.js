@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react'
 import { Row } from 'antd'
 import ListItem from './ListItem'
 import { connect } from 'react-redux'
 
 function List({list}) {
+  const listRef = useRef()
+
+  useEffect(() => {
+    listRef.current.scrollIntoView({ behavior: 'smooth'})
+  },[list])
 
   return (
-    <Row justify={'center'} style={{marginTop: 30}}>
+    <Row ref={listRef} justify={'center'} style={{marginTop: 30}}>
       {
-        list && list.map((item, idx) =>
+        list.map((item, idx) =>
           <ListItem key={idx} item={item}/>
         )
       }
