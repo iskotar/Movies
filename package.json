@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@material-ui/icons": "^4.11.2"
+    "@material-ui/icons": "^4.11.2",
+    "ant-design-pro": "^2.3.2"
   }
 }

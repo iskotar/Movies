@@ -3,34 +3,41 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import 'antd/dist/antd.css'
 import Pager from './Pager'
 import { Container } from '@material-ui/core'
-import { Row } from 'antd'
+import { Layout, Row } from 'antd'
 import Search from './Search'
 import List from './List'
-import Header from './Header'
+import HeaderPanel from './HeaderPanel'
 import ItemPage from './ItemPage'
 import { Slider } from './Slider'
+
+const { Content, Footer } = Layout
 
 function App () {
 
   return (
     <Router>
       <div className="App">
-        <Header/>
-        <Slider/>
-        <Container>
-          <Row justify={'center'}>
-            <Search/>
-            <Switch>
-              <Route exact path="/">
-                <List/>
-                <Pager/>
-              </Route>
-              <Route path="/:id">
-                <ItemPage/>
-              </Route>
-            </Switch>
-          </Row>
-        </Container>
+        <Layout>
+            <HeaderPanel/>
+          <Content style={{ background: "white", minHeight: "calc(100vh - 55px)"}}>
+            <Slider/>
+            <Container>
+              <Row justify={'center'}>
+                <Search/>
+                <Switch>
+                  <Route exact path="/">
+                    <List/>
+                    <Pager/>
+                  </Route>
+                  <Route path="/:id">
+                    <ItemPage/>
+                  </Route>
+                </Switch>
+              </Row>
+            </Container>
+          </Content>
+          <Footer>Movie ©2021 Created by Ivan Skotar</Footer>
+        </Layout>
       </div>
     </Router>
   )
