@@ -17,7 +17,9 @@ function HeaderPanel () {
           color: 'white'
         }}>
         <div>
-          <img src={logo} alt="" height={90}/>
+          <a href="/">
+            <img src={logo} alt="" height={90}/>
+          </a>
         </div>
       </Row>
     </Header>

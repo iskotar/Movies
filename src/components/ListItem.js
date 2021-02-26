@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Col, Row } from 'antd'
+import { Card, Col, Image, Row } from 'antd'
 import { Link } from 'react-router-dom'
 import { searchByIdDispatcher } from '../redux/actions/actions'
 import { connect } from 'react-redux'
@@ -16,7 +16,14 @@ function ListItem ({ item, searchById }) {
             <Card
               hoverable={true}
               style={{ width: 240, margin: 20 }}
-              cover={<img alt="example" src={item.Poster} height={290}/>}
+              cover={
+                <Image
+                  placeholder
+                  src={item.Poster === 'N/A' ? 'error' : item.Poster}
+                  height={320}
+                  preview={false}
+                />
+              }
             >
               <Meta
                 title={item.Title}
@@ -39,4 +46,4 @@ const mapDispatchToProps = dispatch => ({
   searchById: (payload) => dispatch(searchByIdDispatcher(payload))
 })
 
-export default connect(null, mapDispatchToProps)(ListItem);
+export default connect(null, mapDispatchToProps)(ListItem)

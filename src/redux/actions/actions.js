@@ -19,7 +19,7 @@ export const searchByQueryDispatcher = (query) => {
 
 export const searchByIdDispatcher = (id) => {
   return dispatch => {
-    httpRequest(`&i=${id}`)
+    httpRequest(`&i=${id}&plot=full`)
     .then(res => {
       dispatch({
         type: 'BY_ID',

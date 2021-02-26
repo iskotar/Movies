@@ -18,22 +18,20 @@ function App () {
     <Router>
       <div className="App">
         <Layout>
-            <HeaderPanel/>
-          <Content style={{ background: "white", minHeight: "calc(100vh - 55px)"}}>
+          <HeaderPanel/>
+          <Content style={{ background: 'white', minHeight: 'calc(100vh - 55px)' }}>
             <Slider/>
             <Container>
               <Row justify={'center'}>
                 <Search/>
-                <Switch>
-                  <Route exact path="/">
-                    <List/>
-                    <Pager/>
-                  </Route>
-                  <Route path="/:id">
-                    <ItemPage/>
-                  </Route>
-                </Switch>
+                <Route exact path="/">
+                  <List/>
+                  <Pager/>
+                </Route>
               </Row>
+              <Route path="/:id">
+                <ItemPage/>
+              </Route>
             </Container>
           </Content>
           <Footer>Movie ©2021 Created by Ivan Skotar</Footer>

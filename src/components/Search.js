@@ -22,7 +22,7 @@ function Search (props) {
   }
 
   return (
-    <Row align='bottom' style={{marginTop: 50}}>
+    <Row align='bottom' style={{marginTop: 30}}>
       <Col>
         <form autoComplete="off" onSubmit={onSubmit}>
           <TextField
