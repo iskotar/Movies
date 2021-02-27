@@ -17,7 +17,7 @@ function Search (props) {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    props.history.push('/')
+    props.history.push('/movies')
     searchByQuery({ title: inputValue })
   }
 

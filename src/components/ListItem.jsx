@@ -11,7 +11,7 @@ function ListItem ({ item, searchById }) {
   return (
     <>
       <Row justify='center'>
-        <Link to={`/${item.imdbID}`}>
+        <Link to={`/movies/${item.imdbID}`}>
           <Col title={item.Title} onClick={() => searchById(item.imdbID)}>
             <Card
               hoverable={true}
