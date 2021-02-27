@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Row, Layout } from 'antd'
 import logo from '../assets/logo.svg'
-import logo3 from '../assets/shows-logo3.svg'
+import logo3 from '../assets/shows-logo.svg'
 
 const { Header } = Layout
 
