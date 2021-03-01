@@ -6,16 +6,33 @@ import SearchIcon from '@material-ui/icons/Search'
 import { clearErrorDispatcher, searchByQueryDispatcher } from '../redux/actions/actions'
 import { withRouter } from "react-router";
 
-function Search (props) {
+interface IProps {
+  history: {
+    push: (val: string) => void
+  };
+  searchByQuery: (p: {title: string; page?: number}) => void;
+  Error: string;
+  clearError: () => void;
+}
+
+interface IEvent {
+  target: {
+    value: {
+      trim: () => string;
+    }
+  }
+}
+
+function Search (props: IProps) {
   const { searchByQuery, Error, clearError } = props
   const [inputValue, setInputValue] = useState('')
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: IEvent) => {
     clearError()
     setInputValue(e.target.value.trim())
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = (e:React.FormEvent) => {
     e.preventDefault()
     props.history.push('/movies')
     searchByQuery({ title: inputValue })
@@ -47,12 +64,12 @@ function Search (props) {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:any) => ({
   Error: state.searchResult.error
 })
 
-const mapDispatchToProps = dispatch => ({
-  searchByQuery: (payload) => dispatch(searchByQueryDispatcher(payload)),
+const mapDispatchToProps = (dispatch:any) => ({
+  searchByQuery: (payload:any) => dispatch(searchByQueryDispatcher(payload)),
   clearError: () => dispatch(clearErrorDispatcher())
 })
 

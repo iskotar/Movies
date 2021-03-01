@@ -3,10 +3,16 @@ import { Card, Col, Image, Row } from 'antd'
 import { Link } from 'react-router-dom'
 import { searchByIdDispatcher } from '../redux/actions/actions'
 import { connect } from 'react-redux'
+import {IMovieItem} from "./types";
 
 const { Meta } = Card
 
-function ListItem ({ item, searchById }) {
+interface IProps {
+    item: IMovieItem;
+    searchById: (id: string) => void
+}
+
+function ListItem ({ item, searchById }:IProps) {
 
   return (
     <>
@@ -42,8 +48,8 @@ function ListItem ({ item, searchById }) {
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  searchById: (payload) => dispatch(searchByIdDispatcher(payload))
+const mapDispatchToProps = (dispatch:any) => ({
+  searchById: (id: string) => dispatch(searchByIdDispatcher(id))
 })
 
 export default connect(null, mapDispatchToProps)(ListItem)

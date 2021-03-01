@@ -4,7 +4,17 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { searchByQueryDispatcher } from '../redux/actions/actions'
 
-function Pager ({ searchResult, searchByQuery }) {
+interface IProps {
+    searchResult: [];
+    searchByQuery: (payload: IQuery) => void;
+}
+
+interface IQuery {
+    title: string;
+    page: number;
+}
+
+function Pager ({ searchResult, searchByQuery }:IProps) {
   const currentPage = get(searchResult, 'page', 1);
   const totalResults = get(searchResult, 'totalResults', 0);
   const title = get(searchResult, 'title', '');
@@ -25,12 +35,12 @@ function Pager ({ searchResult, searchByQuery }) {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:any) => ({
   searchResult: state.searchResult
 })
 
-const mapDispatchToProps = dispatch => ({
-  searchByQuery: (payload) => dispatch(searchByQueryDispatcher(payload))
+const mapDispatchToProps = (dispatch:any) => ({
+  searchByQuery: (payload: IQuery) => dispatch(searchByQueryDispatcher(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pager)

@@ -1,8 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Image, Descriptions, Rate, Empty } from 'antd'
+import {IMovieItemFull} from "./types";
 
-function ItemPage ({ item }) {
+interface IProps {
+  item: IMovieItemFull;
+}
+
+function ItemPage ({ item }:IProps) {
   if (!Object.keys(item).length) return <Empty/>
 
   return (
@@ -46,7 +51,7 @@ function ItemPage ({ item }) {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:any) => ({
   item: state.currentItem
 })
 

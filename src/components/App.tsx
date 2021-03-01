@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import * as React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'antd/dist/antd.css'
 import Pager from './Pager'
 import { Container } from '@material-ui/core'
@@ -24,12 +24,12 @@ function App () {
             <Container>
               <Row justify={'center'}>
                 <Search/>
-                <Route exact path="/">
+                <Route exact path="/movies">
                   <List/>
                   <Pager/>
                 </Route>
               </Row>
-              <Route path="/:id">
+              <Route path="/movies/:id">
                 <ItemPage/>
               </Route>
             </Container>

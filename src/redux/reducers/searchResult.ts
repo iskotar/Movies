@@ -1,11 +1,29 @@
-const initialState = {
+const initialState: IState = {
   list: [],
   page: 1,
   totalResults: 0,
   title: '',
   error: null
 }
-export default function searchResult(state = initialState, action) {
+
+export interface IState {
+  list: [],
+  page: 1,
+  totalResults: 0,
+  title: '',
+  error: null
+}
+
+interface IAction {
+  type: string;
+  payload: {
+    title: string;
+    page: number;
+    response: any;
+  }
+}
+
+export default function searchResult(state = initialState, action: IAction) {
   switch (action.type) {
     case 'BY_QUERY':
       if(!action.payload.title.length) return { ...state, error: 'Please, enter the movie title'};

@@ -8,9 +8,9 @@ import arrival from '../assets/arrival.jpg'
 import godzila from '../assets/godzila.jpg'
 import mandalorian from '../assets/mandalorian.jpg'
 
-const contentStyle = {
-  textAlign: 'center',
-  background: '#364d79',
+enum contentStyle {
+  textAlign = 'center',
+  background = '#364d79',
 };
 
 const images = [aquaman, transformers_final, tenet, sw, valerian, arrival, godzila, mandalorian]
