@@ -1,4 +1,4 @@
-export interface IMovieItemFull {
+export interface IMovieItemPage {
     Title: string;
     Poster: string;
     imdbRating: number;
@@ -16,10 +16,32 @@ export interface IMovieItemFull {
     Plot: string;
 }
 
-export interface IMovieItem {
+export interface IMovieListItem {
     Poster: string;
     Title: string;
     Type: string;
     Year: string;
     imdbID: string;
+}
+
+export interface IShowsItem {
+    id: number;
+    url: string;
+    name: string;
+    type: string;
+    language: string;
+    runtime: number;
+    premiered: string;
+    officialSite: string;
+    summary: string;
+    image: {
+        medium: string;
+        original: string;
+    };
+    externals: {
+        tvrage: number;
+        thetvdb: number;
+        imdb: string;
+    };
+    genres: string[];
 }

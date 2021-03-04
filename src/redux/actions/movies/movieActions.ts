@@ -1,4 +1,4 @@
-import { httpRequestMovies, httpRequestShows } from '../../services/API'
+import { httpRequestMovies } from '../../../services/API'
 import { Dispatch } from "redux";
 
 interface IQuery {
@@ -6,7 +6,7 @@ interface IQuery {
   page:number;
 }
 
-export const searchByQueryDispatcher = (query:IQuery) => {
+export const searchMoviesByQueryDispatcher = (query:IQuery) => {
 
   return (dispatch:Dispatch) => {
     httpRequestMovies(`&s=${query.title}&page=${query.page || 1}`)
@@ -23,7 +23,7 @@ export const searchByQueryDispatcher = (query:IQuery) => {
   }
 }
 
-export const searchByIdDispatcher = (id:string) => {
+export const searchMovieByIdDispatcher = (id:string) => {
   return (dispatch:Dispatch) => {
     httpRequestMovies(`&i=${id}&plot=full`)
     .then((res) => {
@@ -38,23 +38,5 @@ export const searchByIdDispatcher = (id:string) => {
 export const clearErrorDispatcher = () => {
   return {
     type: 'CLEAR_ERROR'
-  }
-}
-
-
-export const searchShowsByQueryDispatcher = (query:IQuery) => {
-
-  return (dispatch:Dispatch) => {
-    httpRequestShows(`&q=${query.title}&page=${query.page || 1}`)
-    .then(response => {
-      dispatch({
-        type: 'BY_QUERY',
-        payload: {
-          title: query.title,
-          page: query.page,
-          response
-        }
-      })
-    })
   }
 }

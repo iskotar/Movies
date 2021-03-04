@@ -6,7 +6,7 @@ export function httpRequestMovies(params:string) {
 }
 
 export function httpRequestShows(params:string) {
-  return fetch(`http://api.tvmaze.com/shows?${params}`)
+  return fetch(`http://api.tvmaze.com/${params}`)
   .then(res => res.json())
   .then(res => res)
   .catch(error => error)

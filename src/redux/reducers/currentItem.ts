@@ -1,4 +1,4 @@
-import {IMovieItem} from "../../components/types";
+import {IMovieListItem, IShowsItem} from "../../components/types";
 
 interface IAction {
   type: string;
@@ -6,13 +6,31 @@ interface IAction {
 }
 
 export interface IState {
-  currentItem: IMovieItem;
+  currentItem: {
+    info: IMovieListItem | IShowsItem;
+    cast: any[];
+  };
 }
 
-export default function currentItem(state = {}, action:IAction) {
+const initialState = {
+  info: {},
+  cast: []
+}
+
+export default function currentItem(state = initialState, action:IAction) {
   switch (action.type) {
     case 'BY_ID':
-      return {...action.payload}
+      return {
+        ...state,
+        info: action.payload
+      }
+
+    case 'CAST':
+      console.log(action.payload)
+      return {
+        ...state,
+        cast: [...action.payload]
+      }
 
     default:
       return state

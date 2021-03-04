@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import searchResult from './reducers/searchResult'
+import movieSearchResult from './reducers/movies/MovieSearchResult'
 import currentItem from './reducers/currentItem'
+import showsSearchResult from "./reducers/shows/ShowsSearchResult";
 
 export const rootReducer = combineReducers({
-  searchResult,
+  movieSearchResult,
+  showsSearchResult,
   currentItem
 })

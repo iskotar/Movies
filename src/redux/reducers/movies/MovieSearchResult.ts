@@ -7,11 +7,11 @@ const initialState: IState = {
 }
 
 export interface IState {
-  list: [],
-  page: 1,
-  totalResults: 0,
-  title: '',
-  error: null
+  list: [];
+  page: number;
+  totalResults: number;
+  title: string;
+  error: string | null;
 }
 
 interface IAction {
@@ -23,7 +23,7 @@ interface IAction {
   }
 }
 
-export default function searchResult(state = initialState, action: IAction) {
+export default function movieSearchResult(state = initialState, action: IAction) {
   switch (action.type) {
     case 'BY_QUERY':
       if(!action.payload.title.length) return { ...state, error: 'Please, enter the movie title'};
