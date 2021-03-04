@@ -45,3 +45,15 @@ export interface IShowsItem {
     };
     genres: string[];
 }
+
+export interface ICastItem {
+  person: {
+    name: string;
+    image: {
+      medium: string;
+    };
+  };
+  character: {
+    name: string;
+  }
+}
