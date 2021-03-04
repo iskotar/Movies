@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { Col, Row } from 'antd'
-import { IconButton, TextField } from '@material-ui/core'
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import {Col, Row} from 'antd'
+import {IconButton, TextField} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
-import { clearErrorDispatcher, searchByQueryDispatcher } from '../redux/actions/actions'
-import { withRouter } from "react-router";
+import {searchShowsByQueryDispatcher} from "../redux/actions/shows/showsActions";
+import {withRouter} from "react-router";
+import {clearErrorDispatcher, searchMoviesByQueryDispatcher} from "../redux/actions/movies/movieActions";
 
 interface IProps {
   history: {
-    push: (val: string) => void
+    push: (val: string) => void;
+    location: {
+      pathname: string;
+    }
   };
-  searchByQuery: (p: {title: string; page?: number}) => void;
+  searchMoviesByQuery: (p: { title: string; page?: number }) => void;
+  searchShowsByQuery: (p: { title: string; page?: number }) => void;
   Error: string;
   clearError: () => void;
 }
@@ -23,23 +28,30 @@ interface IEvent {
   }
 }
 
-function Search (props: IProps) {
-  const { searchByQuery, Error, clearError } = props
+function Search(props: IProps) {
+  const {searchMoviesByQuery, searchShowsByQuery, Error, clearError, history} = props
   const [inputValue, setInputValue] = useState('')
+  const isPathShows = history.location.pathname.includes('/shows');
 
   const onChangeInput = (e: IEvent) => {
     clearError()
     setInputValue(e.target.value.trim())
   }
 
-  const onSubmit = (e:React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    props.history.push('/movies')
-    searchByQuery({ title: inputValue })
+
+    if (isPathShows) {
+      history.push('/shows')
+      searchShowsByQuery({title: inputValue})
+    } else {
+      history.push('/movies')
+      searchMoviesByQuery({title: inputValue})
+    }
   }
 
   return (
-    <Row align='bottom' style={{marginTop: 30}}>
+    <Row align='bottom' justify={'center'} style={{marginTop: 30}}>
       <Col>
         <form autoComplete="off" onSubmit={onSubmit}>
           <TextField
@@ -54,7 +66,7 @@ function Search (props: IProps) {
           <IconButton
             color="inherit"
             onClick={onSubmit}
-            style={{ border: '1px solid lightgrey', marginLeft: '10px' }}
+            style={{border: '1px solid lightgrey', marginLeft: '10px'}}
           >
             <SearchIcon/>
           </IconButton>
@@ -64,12 +76,13 @@ function Search (props: IProps) {
   )
 }
 
-const mapStateToProps = (state:any) => ({
-  Error: state.searchResult.error
+const mapStateToProps = (state: any) => ({
+  Error: state.movieSearchResult.error
 })
 
-const mapDispatchToProps = (dispatch:any) => ({
-  searchByQuery: (payload:any) => dispatch(searchByQueryDispatcher(payload)),
+const mapDispatchToProps = (dispatch: any) => ({
+  searchMoviesByQuery: (payload: any) => dispatch(searchMoviesByQueryDispatcher(payload)),
+  searchShowsByQuery: (payload: any) => dispatch(searchShowsByQueryDispatcher(payload)),
   clearError: () => dispatch(clearErrorDispatcher())
 })
 

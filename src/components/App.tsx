@@ -1,14 +1,15 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'antd/dist/antd.css'
-import Pager from './Pager'
 import { Container } from '@material-ui/core'
 import { Layout, Row } from 'antd'
 import Search from './Search'
-import List from './List'
+import MoviesList from './movies/MoviesList'
 import HeaderPanel from './HeaderPanel'
-import ItemPage from './ItemPage'
+import MoviesListItemPage from './movies/MoviesListItemPage'
 import { Slider } from './Slider'
+import ShowsList from "./shows/ShowsList";
+import ShowsListItemPage from "./shows/ShowsListItemPage";
 
 const { Content, Footer } = Layout
 
@@ -22,15 +23,20 @@ function App () {
           <Content style={{ background: 'white', minHeight: 'calc(100vh - 55px)' }}>
             <Slider/>
             <Container>
-              <Row justify={'center'}>
+              <Row justify={'center'} style={{display: 'grid'}}>
                 <Search/>
                 <Route exact path="/movies">
-                  <List/>
-                  <Pager/>
+                  <MoviesList/>
+                </Route>
+                <Route exact path="/shows">
+                  <ShowsList/>
                 </Route>
               </Row>
               <Route path="/movies/:id">
-                <ItemPage/>
+                <MoviesListItemPage/>
+              </Route>
+              <Route path="/shows/:id">
+                <ShowsListItemPage/>
               </Route>
             </Container>
           </Content>

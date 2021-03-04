@@ -1,18 +1,18 @@
 import React from 'react'
 import { Card, Col, Image, Row } from 'antd'
 import { Link } from 'react-router-dom'
-import { searchByIdDispatcher } from '../redux/actions/actions'
+import { searchMovieByIdDispatcher } from '../../redux/actions/movies/movieActions'
 import { connect } from 'react-redux'
-import {IMovieItem} from "./types";
+import {IMovieListItem} from "../types";
 
 const { Meta } = Card
 
 interface IProps {
-    item: IMovieItem;
+    item: IMovieListItem;
     searchById: (id: string) => void
 }
 
-function ListItem ({ item, searchById }:IProps) {
+function MoviesListItem ({ item, searchById }:IProps) {
 
   return (
     <>
@@ -49,7 +49,7 @@ function ListItem ({ item, searchById }:IProps) {
 }
 
 const mapDispatchToProps = (dispatch:any) => ({
-  searchById: (id: string) => dispatch(searchByIdDispatcher(id))
+  searchById: (id: string) => dispatch(searchMovieByIdDispatcher(id))
 })
 
-export default connect(null, mapDispatchToProps)(ListItem)
+export default connect(null, mapDispatchToProps)(MoviesListItem)
