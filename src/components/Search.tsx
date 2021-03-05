@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {Col, Row} from 'antd'
-import {IconButton, TextField} from '@material-ui/core'
+import {Row} from 'antd'
+import {FormControl, IconButton, InputLabel, Select, TextField} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
+import MenuItem from '@material-ui/core/MenuItem';
 import {searchShowsByQueryDispatcher} from "../redux/actions/shows/showsActions";
 import {withRouter} from "react-router";
 import {clearErrorDispatcher, searchMoviesByQueryDispatcher} from "../redux/actions/movies/movieActions";
@@ -22,26 +23,26 @@ interface IProps {
 
 interface IEvent {
   target: {
-    value: {
-      trim: () => string;
-    }
+    value: string
   }
 }
 
 function Search(props: IProps) {
   const {searchMoviesByQuery, searchShowsByQuery, Error, clearError, history} = props
   const [inputValue, setInputValue] = useState('')
-  const isPathShows = history.location.pathname.includes('/shows');
+  const [category, setCategory] = useState(0)
 
   const onChangeInput = (e: IEvent) => {
     clearError()
     setInputValue(e.target.value.trim())
   }
 
+  const onChangeCategory = (event: any) => setCategory(event.target.value)
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (isPathShows) {
+    if (category) {
       history.push('/shows')
       searchShowsByQuery({title: inputValue})
     } else {
@@ -52,26 +53,38 @@ function Search(props: IProps) {
 
   return (
     <Row align='bottom' justify={'center'} style={{marginTop: 30}}>
-      <Col>
-        <form autoComplete="off" onSubmit={onSubmit}>
+      <FormControl>
+        <InputLabel id="select-label">Category</InputLabel>
+        <Select
+          labelId="select-label"
+          id="select"
+          value={category}
+          onChange={onChangeCategory}
+        >
+          <MenuItem value={0}>Movies</MenuItem>
+          <MenuItem value={1}>Shows</MenuItem>
+        </Select>
+      </FormControl>
+      <form onSubmit={onSubmit} autoComplete="off" style={{marginLeft: '10px'}}>
+        <FormControl>
           <TextField
             id="search-field"
             label="Search"
             placeholder="Enter movie title"
             onChange={onChangeInput}
-            margin="dense"
             error={!!Error}
             helperText={Error}
+            onSubmit={onSubmit}
           />
-          <IconButton
-            color="inherit"
-            onClick={onSubmit}
-            style={{border: '1px solid lightgrey', marginLeft: '10px'}}
-          >
-            <SearchIcon/>
-          </IconButton>
-        </form>
-      </Col>
+        </FormControl>
+      </form>
+      <IconButton
+        color="inherit"
+        onClick={onSubmit}
+        style={{border: '1px solid lightgrey'}}
+      >
+        <SearchIcon/>
+      </IconButton>
     </Row>
   )
 }
