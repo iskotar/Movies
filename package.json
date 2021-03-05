@@ -1,5 +1,6 @@
 {
   "name": "Movies",
+  "homepage": "https://iskotar.github.io/Movies/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,7 +30,9 @@
     "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +57,7 @@
     "@types/lodash": "^4.14.168",
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
+    "gh-pages": "^3.1.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }
