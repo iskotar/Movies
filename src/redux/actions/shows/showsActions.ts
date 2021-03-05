@@ -23,6 +23,12 @@ export const searchShowsByQueryDispatcher = (query: IQuery) => {
   }
 }
 
+export const clearShowsSearchResultDispatcher = () => {
+  return {
+    type: 'CLEAR_SHOWS'
+  }
+}
+
 export const searchShowsByIdDispatcher = (id: number) => {
   return (dispatch: Dispatch) => {
     httpRequestShows(`shows/${id}`)

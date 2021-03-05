@@ -35,6 +35,12 @@ export const searchMovieByIdDispatcher = (id:string) => {
   }
 }
 
+export const clearMoviesSearchResultDispatcher = () => {
+  return {
+    type: 'CLEAR_MOVIES'
+  }
+}
+
 export const clearErrorDispatcher = () => {
   return {
     type: 'CLEAR_ERROR'

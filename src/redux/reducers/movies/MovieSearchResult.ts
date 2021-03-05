@@ -36,8 +36,12 @@ export default function movieSearchResult(state = initialState, action: IAction)
         title: action.payload.title
       }
 
+    case 'CLEAR_MOVIES':
+      return initialState
+
     case 'CLEAR_ERROR':
       return {...state, error: ''}
+
     default:
       return state
   }

@@ -36,6 +36,9 @@ export default function showsSearchResult(state = initialState, action: IAction)
         title: action.payload.title
       }
 
+    case 'CLEAR_SHOWS':
+      return initialState
+
     default:
       return state
   }
