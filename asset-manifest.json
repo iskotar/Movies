@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/Movies/static/css/main.f5986cb9.chunk.css",
+    "main.js": "/Movies/static/js/main.069be02c.chunk.js",
+    "main.js.map": "/Movies/static/js/main.069be02c.chunk.js.map",
+    "runtime-main.js": "/Movies/static/js/runtime-main.843fd6f1.js",
+    "runtime-main.js.map": "/Movies/static/js/runtime-main.843fd6f1.js.map",
+    "static/css/2.fc2db407.chunk.css": "/Movies/static/css/2.fc2db407.chunk.css",
+    "static/js/2.7c5f0499.chunk.js": "/Movies/static/js/2.7c5f0499.chunk.js",
+    "static/js/2.7c5f0499.chunk.js.map": "/Movies/static/js/2.7c5f0499.chunk.js.map",
+    "index.html": "/Movies/index.html",
+    "static/css/2.fc2db407.chunk.css.map": "/Movies/static/css/2.fc2db407.chunk.css.map",
+    "static/css/main.f5986cb9.chunk.css.map": "/Movies/static/css/main.f5986cb9.chunk.css.map",
+    "static/js/2.7c5f0499.chunk.js.LICENSE.txt": "/Movies/static/js/2.7c5f0499.chunk.js.LICENSE.txt",
+    "static/media/aquaman.4d4d3534.jpg": "/Movies/static/media/aquaman.4d4d3534.jpg",
+    "static/media/arrival.9b9574b8.jpg": "/Movies/static/media/arrival.9b9574b8.jpg",
+    "static/media/godzila.89919299.jpg": "/Movies/static/media/godzila.89919299.jpg",
+    "static/media/logo.eeb0ccf4.svg": "/Movies/static/media/logo.eeb0ccf4.svg",
+    "static/media/mandalorian.c6cd2f65.jpg": "/Movies/static/media/mandalorian.c6cd2f65.jpg",
+    "static/media/shows-logo.3393dd63.svg": "/Movies/static/media/shows-logo.3393dd63.svg",
+    "static/media/sw.ea35ce9a.jpg": "/Movies/static/media/sw.ea35ce9a.jpg",
+    "static/media/tenet.de31a3be.jpg": "/Movies/static/media/tenet.de31a3be.jpg",
+    "static/media/transformers_final.cb77b375.jpg": "/Movies/static/media/transformers_final.cb77b375.jpg",
+    "static/media/valerian.1f583162.jpg": "/Movies/static/media/valerian.1f583162.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.843fd6f1.js",
+    "static/css/2.fc2db407.chunk.css",
+    "static/js/2.7c5f0499.chunk.js",
+    "static/css/main.f5986cb9.chunk.css",
+    "static/js/main.069be02c.chunk.js"
+  ]
+}
