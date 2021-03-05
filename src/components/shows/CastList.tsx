@@ -18,7 +18,9 @@ function CastList(props: IProps) {
       </h1>
       <Row justify='center' style={{marginBottom: 30}}>
         {
-          cast.map((actor: ICastItem, idx: number) => <CastListItem key={idx} actor={actor}/>)
+          cast.length ?
+            cast.map((actor: ICastItem, idx: number) => <CastListItem key={idx} actor={actor}/>)
+            : 'N/A'
         }
       </Row>
     </>
