@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {connect} from 'react-redux'
+import {connect} from "react-redux";
 import {Row, Image, Descriptions, Rate, Empty} from 'antd'
 import {ICastItem, IShowsItem} from "../types";
 import {get} from "lodash";
