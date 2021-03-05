@@ -1,6 +1,6 @@
 # Movies
 
-###Used:
+### Used:
 * React
 * Redux
 * Redux-Thunk
