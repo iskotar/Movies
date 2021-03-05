@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {Row} from 'antd'
 import {FormControl, IconButton, InputLabel, Select, TextField} from '@material-ui/core'
@@ -31,6 +31,10 @@ function Search(props: IProps) {
   const {searchMoviesByQuery, searchShowsByQuery, Error, clearError, history} = props
   const [inputValue, setInputValue] = useState('')
   const [category, setCategory] = useState(0)
+
+  useEffect(() => {
+    setInputValue('')
+  }, [history.location.pathname])
 
   const onChangeInput = (e: IEvent) => {
     clearError()
@@ -75,6 +79,7 @@ function Search(props: IProps) {
             error={!!Error}
             helperText={Error}
             onSubmit={onSubmit}
+            value={inputValue}
           />
         </FormControl>
       </form>
