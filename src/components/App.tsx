@@ -12,11 +12,13 @@ import ShowsList from "./shows/ShowsList";
 import ShowsListItemPage from "./shows/ShowsListItemPage";
 
 const { Content, Footer } = Layout
+const BASE_URL = process.env.PUBLIC_URL;
+
 
 function App () {
 
   return (
-    <Router>
+    <Router basename={BASE_URL}>
       <div className="App">
         <Layout>
           <HeaderPanel/>

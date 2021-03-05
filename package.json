@@ -1,6 +1,6 @@
 {
   "name": "Movies",
-  "homepage": "https://iskotar.github.io/Movies/",
+  "homepage": "https://iskotar.github.io/Movies",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
